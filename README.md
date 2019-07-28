@@ -23,6 +23,11 @@ mysql -u root -p
 
 Note that the database names, usernames, and passwords used here are expected to match the configuration you provide to HAPI FHIR and Keycloak.
 
+
+### Keycloak
+Check out [ersd-keycloak](https://gitlab.ruvos.com/ersd/ersd-keycloak). It contains documentation regarding running and configuring Keycloak for use with ERSD. I use the `jboss/keycloak` image from [Docker hub](https://hub.docker.com/r/jboss/keycloak/), but the `ersd-keycloak` repository provides a tool for quickly configuring a deployed Keycloak instance with the ERSD requirements.
+
+
 ## Projects
 - [ersd](https://gitlab.ruvos.com/ersd/ersd) - ERSD NodeJS application
 - [ersd-hapi-fhir](https://gitlab.ruvos.com/ersd/ersd-hapi-fhir) - Dockerized HAPI FHIR Server for ERSD
