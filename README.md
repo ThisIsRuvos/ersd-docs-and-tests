@@ -24,6 +24,13 @@ mysql -u root -p
 Note that the database names, usernames, and passwords used here are expected to match the configuration you provide to HAPI FHIR and Keycloak.
 
 
+### Regarding :whale:Docker:whale:
+There are several spots where you may want to pull an image from the registry here on Ruvos' GitLab.  To do so, authenticate via `docker login` and a [Personal Access Token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html):
+```bash
+docker login -u <USERNAME> -p <GITLAB_PERSONAL_ACCESS_TOKEN> registry.ruvos.com
+```
+
+
 ### Keycloak
 Check out [ersd-keycloak](https://gitlab.ruvos.com/ersd/ersd-keycloak). It contains documentation regarding running and configuring Keycloak for use with ERSD. I use the `jboss/keycloak` image from [Docker hub](https://hub.docker.com/r/jboss/keycloak/), but the `ersd-keycloak` repository provides a tool for quickly configuring a deployed Keycloak instance with the ERSD requirements.
 
