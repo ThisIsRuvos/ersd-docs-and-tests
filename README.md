@@ -143,6 +143,15 @@ There are several other configuration properties available, which are documented
 ```bash
 # Create a test ERSD user in Keycloak
 ./create-test-user
+
+# Create contact info in ERSD & HAPI FHIR
+./create-contact-info
+
+# Send a test email blast to all ERSD users
+./test-email-blast
+
+# Upload a test bundle
+./test-bundle-upload
 ```
 
 

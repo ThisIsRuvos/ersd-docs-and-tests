@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+read -p 'Keycloak Base URL (http://localhost:8081): ' kc_base_url
+read -p 'Realm: (ersd) ' realm
+read -p 'Client: (ersd-app) ' client
+read -p 'Test User Username: ' test_username
+read -s -p $'Test User Password: \n' test_password
+read -p 'First Name: (Test) ' first_name
+read -p 'Last Name: (User) ' last_name
+read -p 'Email: ' email
+read -p 'Phone: ' phone
+read -p 'ERSD Base URL (http://localhost:3333): ' ersd_base_url
+
+kc_base_url=${kc_base_url:-'http://localhost:8081'}
+ersd_base_url=${ersd_base_url:-'http://localhost:3333'}
+realm=${realm:-ersd}
+client=${client:-ersd-app}
+first_name=${first_name:-Test}
+last_name=${last_name:-User}
+
+res=$(curl -sS --data-urlencode 'username='$test_username --data-urlencode 'password='$test_password -d 'grant_type=password&client_id='$client -X POST $kc_base_url/auth/realms/$realm/protocol/openid-connect/token)
+token=$(echo $res | jq -r '.access_token')
+
+if [ $token == 'null' ]; then
+echo 'Unable to fetch token.'
+echo $res
+exit 1
+fi
+
+echo 'Creating contact info for '${test_username}' on ERSD'
+curl -X POST -H 'content-type: application/json' -H 'Authorization: Bearer '$token -d '{"resourceType":"Person","contained":[],"name":[{"given":["'$first_name'"],"family":"'$last_name'"}],"telecom":[{"system":"email","value":"mailto:'$email'"},{"system":"phone","use":"work","value":"'$phone'"},{"system":"phone","use":"mobile","value":"'$phone'"}]}' $ersd_base_url/api/user/me

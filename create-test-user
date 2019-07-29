@@ -6,13 +6,11 @@ read -p 'Keycloak Base URL (http://localhost:8081): ' base_url
 read -p 'Admin Username: ' admin_username
 read -s -p $'Admin Password: \n' admin_password
 read -p 'Realm: (ersd) ' realm
-read -p 'Client: (ersd-app) ' client
 read -p 'Test User Username: ' test_username
 read -s -p $'Test User Password: \n' test_password
 
 base_url=${base_url:-'http://localhost:8081'}
 realm=${realm:-ersd}
-client=${client:-ersd-app}
 
 res=$(curl -sS --data-urlencode 'username='$admin_username --data-urlencode 'password='$admin_password -d 'grant_type=password&client_id=admin-cli' -X POST $base_url/auth/realms/master/protocol/openid-connect/token)
 token=$(echo $res | jq -r '.access_token')
