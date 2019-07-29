@@ -150,16 +150,16 @@ cd ersd-docs-and-tests
 ```
 
 ```bash
-# Create a test ERSD user in Keycloak
+# 1. Create a test ERSD user in Keycloak
 ./create-test-user
 
-# Create contact info in ERSD & HAPI FHIR
+# 2. Create contact info in ERSD & HAPI FHIR
 ./create-contact-info
 
-# Send a test email blast to all ERSD users
+# 3. Send a test email blast to all ERSD users
 ./test-email-blast
 
-# Upload a test bundle
+# 4. Upload a test bundle
 ./test-bundle-upload
 ```
 
