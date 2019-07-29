@@ -98,7 +98,7 @@ Here's the JSON formatted for readability:
 ```
 
 #### server.authCertificate
-Keycloak realm authentication certificate, which can be easily fetched using the configuration tool in [ersd-keycloak](https://gitlab.ruvos.com/ersd/ersd-keycloak) or by visiting the keycloak admin web app and checking keys under realm settings.
+Keycloak realm authentication certificate, which can be fetched using the configuration tool in [ersd-keycloak](https://gitlab.ruvos.com/ersd/ersd-keycloak) or by visiting the keycloak admin web app and checking keys under realm settings.
 
 #### server.fhirServerBase
 Base URL of the HAPI FHIR server including fhir path. This is wherever you've got [ersd-hapi-fhir](https://gitlab.ruvos.com/ersd/ersd-hapi-fhir) deployed.
