@@ -141,6 +141,15 @@ There are several other configuration properties available, which are documented
 
 ## Testing
 ```bash
+# run the dockerized tests
+docker run -it registry.ruvos.com/ersd/ersd-docs-and-tests
+
+# or clone this repo
+git clone git@gitlab.ruvos.com:ersd/ersd-docs-and-tests.git
+cd ersd-docs-and-tests
+```
+
+```bash
 # Create a test ERSD user in Keycloak
 ./create-test-user
 
