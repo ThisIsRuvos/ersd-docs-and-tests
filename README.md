@@ -1,5 +1,5 @@
 # ersd-docs
-> Documentation for all ERSD Components
+> Documentation and tests for ERSD Components
 
 ## Setup
 
