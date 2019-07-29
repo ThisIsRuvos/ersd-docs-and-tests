@@ -60,7 +60,7 @@ docker run -p 3333:3333 -e NODE_CONFIG=<CONFIG_JSON> -it registry.ruvos.com/ersd
 The HTTP server listens on port 3333, so route that accordingly. The `NODE_CONFIG` environment variable allows us to pass the entirety of the app's configuration as JSON. Here's what that might look like:
 
 ```bash
-docker run -p 3333:3333 -e NODE_CONFIG='{"server":{"authCertificate":"-----BEGIN CERTIFICATE-----\\nMIIClzCCAX8CBgFsOjq03zANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDARlcnNkMB4XDTE5MDcyODIwMTUyMVoXDTI5MDcyODIwMTcwMVowDzENMAsGA1UEAwwEZXJzZDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKykYMfe+vEbthTVNqdqfzIvAGJIxBfRPZ0kxGrxbIw7XQ7cfAF/G+uB6GwUMm0xDQKEv1C5tWJwl+RBKt5cM7UpNAdUEcaXl5cGaibvz9KwgZqBVizRG5URaIzIqBRr7EGq4nVcJhMdNZbZubKQcvVr8HWm4XeYQWMn3Mtuymu4eoIVy+FnIjAvrSwzF5r3s/15NwRCDglz4zHx450IJP9Re22hW3Dods829JOtmnHWERXvUqaBcls6WC9GYiuckOi8A/3o9vpu3ioJVFUFTR/uzymIG6XW1zI4MDUOy0o5w5DNqitWH2rNaS9A73jSxZI/uCUgZ8Y+zd2iwUPL0qMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAhsgtGaDoYhWG7ICIbatVioQeKUyJUbS8nJ1QWMCiTHfpkhWOgzwQEHhVfJqCLk4/HD2XTjxqzoJEhypCTkSVpMugJe5qkGL6V8vsCpgR+H8r9K+qMqjwdxiW7L5Hgj2S3cTnNQ9zyA/Q3zrrHPi+4ioldb24wgfu4OA40qLSzbz8JGTsDJ1pnPvwmc1l8LJTgf1AquculsjYDJVQzNPmlzalrV7MpKaK2VEHbw89mOCs/AiMaGVI/le7KXkK+wUgz7rGN0wXtgKFSfoBdy19T4oPXPg2h0q3KUtw+Qs4Acuz2Z3cgFlMswq/2eWJSKqKOoKwUG1Po/6U4XZXBUpjIQ==\\n-----END CERTIFICATE-----","fhirServerBase":"http://ersd-hapi-fhir:8080/hapi-fhir-jpaserver/fhir","enableSubscriptions":true,"contactInfo":{"checkDurationSeconds":3600}},"email":{"from":"sandboxsupport@aimsplatform.com","host":"aws-smtp-relay","port":10025,"tls":false},"client":{"keycloak":{"url":"http://localhost:8081/auth","realm":"ersd","clientId":"ersd-app"}}}' -it registry.ruvos.com/ersd/ersd
+docker run -p 3333:3333 -e NODE_CONFIG='{"server":{"authCertificate":"-----BEGIN CERTIFICATE-----\nMIIClzCCAX8CBgFsOjq03zANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDARlcnNkMB4XDTE5MDcyODIwMTUyMVoXDTI5MDcyODIwMTcwMVowDzENMAsGA1UEAwwEZXJzZDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKykYMfe+vEbthTVNqdqfzIvAGJIxBfRPZ0kxGrxbIw7XQ7cfAF/G+uB6GwUMm0xDQKEv1C5tWJwl+RBKt5cM7UpNAdUEcaXl5cGaibvz9KwgZqBVizRG5URaIzIqBRr7EGq4nVcJhMdNZbZubKQcvVr8HWm4XeYQWMn3Mtuymu4eoIVy+FnIjAvrSwzF5r3s/15NwRCDglz4zHx450IJP9Re22hW3Dods829JOtmnHWERXvUqaBcls6WC9GYiuckOi8A/3o9vpu3ioJVFUFTR/uzymIG6XW1zI4MDUOy0o5w5DNqitWH2rNaS9A73jSxZI/uCUgZ8Y+zd2iwUPL0qMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAhsgtGaDoYhWG7ICIbatVioQeKUyJUbS8nJ1QWMCiTHfpkhWOgzwQEHhVfJqCLk4/HD2XTjxqzoJEhypCTkSVpMugJe5qkGL6V8vsCpgR+H8r9K+qMqjwdxiW7L5Hgj2S3cTnNQ9zyA/Q3zrrHPi+4ioldb24wgfu4OA40qLSzbz8JGTsDJ1pnPvwmc1l8LJTgf1AquculsjYDJVQzNPmlzalrV7MpKaK2VEHbw89mOCs/AiMaGVI/le7KXkK+wUgz7rGN0wXtgKFSfoBdy19T4oPXPg2h0q3KUtw+Qs4Acuz2Z3cgFlMswq/2eWJSKqKOoKwUG1Po/6U4XZXBUpjIQ==\n-----END CERTIFICATE-----","fhirServerBase":"http://ersd-hapi-fhir:8080/hapi-fhir-jpaserver/fhir","enableSubscriptions":true,"contactInfo":{"checkDurationSeconds":3600}},"email":{"from":"sandboxsupport@aimsplatform.com","host":"aws-smtp-relay","port":10025,"tls":false},"client":{"keycloak":{"url":"http://localhost:8081/auth","realm":"ersd","clientId":"ersd-app"}}}' -it registry.ruvos.com/ersd/ersd
 ```
 
 Here's the JSON formatted for readability:
@@ -137,6 +137,13 @@ There are several other configuration properties available, which are documented
 - Keycloak should be exposed publicly
 - The ERSD NodeJS app should be exposed publicly
 - HAPI FHIR may be kept private but needs to be accessible by the ERSD NodeJS app
+
+
+## Testing
+```bash
+# Create a test ERSD user in Keycloak
+./create-test-user
+```
 
 
 ## Projects

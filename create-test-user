@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -e
+
+read -p 'Keycloak Base URL (http://localhost:8081): ' base_url
+read -p 'Admin Username: ' admin_username
+read -s -p $'Admin Password: \n' admin_password
+read -p 'Realm: (ersd) ' realm
+read -p 'Client: (ersd-app) ' client
+read -p 'Test User Username: ' test_username
+read -s -p $'Test User Password: \n' test_password
+
+base_url=${base_url:-'http://localhost:8081'}
+realm=${realm:-ersd}
+client=${client:-ersd-app}
+
+res=$(curl -sS --data-urlencode 'username='$admin_username --data-urlencode 'password='$admin_password -d 'grant_type=password&client_id=admin-cli' -X POST $base_url/auth/realms/master/protocol/openid-connect/token)
+token=$(echo $res | jq -r '.access_token')
+
+if [ $token == 'null' ]; then
+echo 'Unable to fetch token.'
+echo $res
+exit 1
+fi
+
+echo 'Creating user '${test_username}' in realm '${realm}
+curl -X POST -H 'content-type: application/json' -H 'Authorization: Bearer '$token -d '{"enabled":true,"username":"'$test_username'"}' $base_url/auth/admin/realms/$realm/users
+
+echo 'Fetching ID for user '${test_username}' in realm '${realm}
+res=$(curl -H 'Authorization: Bearer '$token $base_url'/auth/admin/realms/'${realm}'/users?briefRepresentation=true&first=0&max=20&search='$test_username)
+test_user_id=$(echo $res | jq -r '.[] | select(.username == "test").id')
+
+echo $test_user_id
+
+echo 'Setting password for user '${test_username}' in realm '${realm}
+curl -X PUT -H 'content-type: application/json' -H 'Authorization: Bearer '$token -d '{"type": "password", "value": "'$test_password'", "temporary": false}' $base_url/auth/admin/realms/$realm/users/$test_user_id/reset-password
+
+echo 'Fetching admin role in realm '${realm}
+admin_role=$(curl -H 'Authorization: Bearer '$token $base_url'/auth/admin/realms/'${realm}'/roles/admin')
+echo $admin_role
+
+echo 'Giving test user '${test_username}' admin role in realm '${realm}
+curl -X POST -H 'content-type: application/json' -H 'Authorization: Bearer '$token -d '['$admin_role']' $base_url/auth/admin/realms/$realm/users/$test_user_id/role-mappings/realm
+
