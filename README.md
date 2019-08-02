@@ -1,4 +1,4 @@
-# ersd-docs
+# ersd-docs-and-tests
 > Documentation and tests for ERSD Components
 
 ## Setup
